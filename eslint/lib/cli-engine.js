@@ -182,7 +182,14 @@ function processText(text, configHelper, filename) {
     debug("Linting " + filename);
     config = configHelper.getConfig(filePath);
     if(!config.jssChecker){
-        return {};
+    	//未找到点ck文件则直接返回不进行校验
+    	console.log("未找到点ck文件,或ck文件已经关闭校验功能");
+        return {
+        	filePath: filename,
+        	messages: [],
+        	errorCount: stats.errorCount,
+       	 	warningCount: stats.warningCount
+    	};
     }
     loadPlugins(config.plugins);
 
@@ -314,10 +321,6 @@ CLIEngine.prototype = {
             exclude = ignoredPaths.contains.bind(ignoredPaths),
             stats;
 
-        config = configHelper.getConfig(filePath);
-        if(!config.jssChecker){
-            return {};
-        }
         traverse({
             files: files,
             extensions: options.extensions,
