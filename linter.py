@@ -23,7 +23,7 @@ class ESLint(NodeLinter):
     cwd = os.path.split(os.path.realpath(__file__))[0]
     syntax = ('javascript', 'html', 'javascriptnext', 'javascript (babel)', 'javascript (jsx)', 'jsx-real')
     npm_name = 'eslint'
-    cmd = ('node-debug', cwd+'/eslint/bin/eslint.js', '--format', 'compact', '--stdin', '--stdin-filename', '__RELATIVE_TO_FOLDER__')
+    cmd = ('node', cwd+'/eslint/bin/eslint.js', '--format', 'compact', '--stdin', '--stdin-filename', '__RELATIVE_TO_FOLDER__')
     version_args = '--version'
     version_re = r'v(?P<version>\d+\.\d+\.\d+)'
     version_requirement = '>= 0.20.0'
