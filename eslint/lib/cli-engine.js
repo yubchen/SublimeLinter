@@ -187,8 +187,8 @@ function processText(text, configHelper, filename) {
         return {
         	filePath: filename,
         	messages: [],
-        	errorCount: stats.errorCount,
-       	 	warningCount: stats.warningCount
+        	errorCount: 0,
+       	 	warningCount: 0
     	};
     }
     loadPlugins(config.plugins);
