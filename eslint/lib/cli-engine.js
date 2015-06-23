@@ -181,6 +181,9 @@ function processText(text, configHelper, filename) {
     filename = filename || "<text>";
     debug("Linting " + filename);
     config = configHelper.getConfig(filePath);
+    if(!config.jssChecker){
+        return {};
+    }
     loadPlugins(config.plugins);
 
     for (var plugin in loadedPlugins) {
