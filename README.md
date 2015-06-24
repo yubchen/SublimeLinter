@@ -12,7 +12,7 @@ SublimeLinter For Qunar JS Validate
 此插件根据sublimeLinter进行二次开发，实现基于nodejs和eslint的进行的JavaScript规范校验。
 
 ## 安装步骤
-
+**Sublime Text 3版本的JS规范校验插件依赖于nodejs，因此需要在使用此插件前保证nodejs在本机器能够正常使用。**
 1. 安装Sublime Text 3
 
 2. 执行一次Sublime Text 3，此时Sublime Text 3将自动生成插件目录。
