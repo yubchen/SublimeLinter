@@ -49,7 +49,6 @@
 // Rule Definition
 //------------------------------------------------------------------------------
 
-if (true) {}
 
 
 module.exports = function(context) {
@@ -89,19 +88,23 @@ module.exports = function(context) {
         }
     }
     function checkForStatement(node){
-        var leftBrace = context.getTokensBefore(node.init, 1)[0];
-        var rightBrace = context.getTokensAfter(node.update, 1)[0];
-
+    	var tokens = context.getTokens(node);
+        var leftBrace = tokens[1];
+        var leftBraceAfterOne = tokens[2];
+        var rightBrace = context.getTokensBefore(node.body, 1)[0];
+		var rightBraceBeforeOne = context.getTokensBefore(rightBrace, 1)[0];
+		
         if (leftBrace.value !== "(" || rightBrace.value !== ")"){
             return;
         }
-        if (leftBrace.loc.end.line === node.init.loc.start.line &&
-            leftBrace.loc.end.column !== node.init.loc.start.column){
+
+        if (leftBrace.loc.end.line === leftBraceAfterOne.loc.start.line &&
+            leftBrace.loc.end.column !== leftBraceAfterOne.loc.start.column){
             report(leftBrace);
         }
 
-        if (rightBrace.loc.start.line === node.update.loc.end.line &&
-            rightBrace.loc.start.column !== node.update.loc.end.column){
+        if (rightBrace.loc.start.line === rightBraceBeforeOne.loc.end.line &&
+            rightBrace.loc.start.column !== rightBraceBeforeOne.loc.end.column){
             report(rightBrace);
         }
     }
